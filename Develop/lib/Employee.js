@@ -1,10 +1,10 @@
 // defined employee class
 class Employee {
-    constructor(name,email, id, role){
+    constructor(name, id, email){
         this.name = name
         this.email = email
         this.id = id
-        this.role = role
+        this.role = 'Employee'
 
     }
 

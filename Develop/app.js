@@ -106,30 +106,34 @@ function app() {
                 name: "selectEmployees",
                 message: "What is your employee type?",
                 choices: ["engineer",
-                          "manager",
-                          "intern",
-                            "done"
-            ] 
-        }
-    ]).then(response => {
-        const role = response.selectEmployees;
-        if(role == "manager") {
-            getManager();
-        }
-        if(role == "engineer") {
-            getEngineer();
-        }
-        if(role == "intern") {
-            getIntern();
-        }
-        if(role == "done") {
-            renderTeam();
-        }
-    })
-
+                    "manager",
+                    "intern",
+                    "done"
+                ]
             }
-        ])
+        ]).then(response => {
+            const role = response.selectEmployees;
+            if (role == "manager") {
+                getManager();
+            }
+            if (role == "engineer") {
+                getEngineer();
+            }
+            if (role == "intern") {
+                getIntern();
+            }
+            if (role == "done") {
+                renderTeam();
+            }
+        });
+
     }
+    addingNewMember()
+}
+function renderTeam () {
+    fs.writeFileSync(outputPath, render(teamMember), "utf-8");
+}
+app();
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 

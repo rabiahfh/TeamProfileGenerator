@@ -9,6 +9,7 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
+const { connect } = require("tls");
 
 const teamMember = [];
 function app() {
@@ -64,7 +65,7 @@ function app() {
                 message: "What is your Github username please?"
             }
         ]).then(response => {
-            const engineer = new Engineer(response.engineerName, response.engineerId, response.engineerEmail, response.officeNumber);
+            const engineer = new Engineer(response.engineerName, response.engineerId, response.engineerEmail, response.github);
             teamMember.push(engineer);
             addingNewMember();
         })
@@ -93,7 +94,7 @@ function app() {
                 message: "What is your school please?"
             }
         ]).then(response => {
-            const intern = new Intern(response.internName, response.internId, response.internEmail, response.officeNumber);
+            const intern = new Intern(response.internName, response.internId, response.internEmail, response.school);
             teamMember.push(intern);
             addingNewMember();
         })
@@ -102,27 +103,33 @@ function app() {
     function addingNewMember() {
         inquirer.prompt([
             {
-                type: "checkbox",
-                name: "selectEmployees",
+                type:"list",
+                name: "selectemployees",
                 message: "What is your employee type?",
-                choices: ["engineer",
+                choices: [
                     "manager",
-                    "intern",
+                    "engineer",
+                     "intern",
                     "done"
-                ]
+                ],
+                filter: function (val) {
+                    return val.toLowerCase();
+                  },
             }
         ]).then(response => {
-            const role = response.selectEmployees;
-            if (role == "manager") {
+            const role = response.selectemployees;
+            console.log(role);
+
+            if (role === "manager") {
                 getManager();
             }
-            if (role == "engineer") {
+           else if (role === "engineer") {
                 getEngineer();
             }
-            if (role == "intern") {
+           else if (role === "intern") {
                 getIntern();
             }
-            if (role == "done") {
+           else if (role === "done") {
                 renderTeam();
             }
         });
@@ -132,6 +139,7 @@ function app() {
 }
 function renderTeam () {
     fs.writeFileSync(outputPath, render(teamMember), "utf-8");
+
 }
 app();
 // Write code to use inquirer to gather information about the development team members,
@@ -142,7 +150,7 @@ app();
 // generate and return a block of HTML including templated divs for each employee!
 
 // After you have your html, you're now ready to create an HTML file using the HTML
-// returned from the `render` function. Now write it to a file named `team.html` in the
+// returned from the `render` function. Now write it to a file named `npm run.html` in the
 // `output` folder. You can use the variable `outputPath` above target this location.
 // Hint: you may need to check if the `output` folder exists and create it if it
 // does not.

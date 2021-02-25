@@ -4,7 +4,7 @@ class Employee {
         this.name = name
         this.email = email
         this.id = id
-        this.role = 'Employee'
+        // this.role = 'Employee'
 
     }
 
@@ -19,9 +19,9 @@ class Employee {
         return this.id
     }
     getRole(){
-        return this.role
+        return "Employee"
     }
     
     
 }
-module.exports = Employee;
+module.exports = Employee

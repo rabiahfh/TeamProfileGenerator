@@ -103,14 +103,29 @@ function app() {
         inquirer.prompt([
             {
                 type: "checkbox",
-                name: "selectemployees",
+                name: "selectEmployees",
                 message: "What is your employee type?",
                 choices: ["engineer",
                           "manager",
                           "intern",
                             "done"
-            ]
+            ] 
         }
+    ]).then(response => {
+        const role = response.selectEmployees;
+        if(role == "manager") {
+            getManager();
+        }
+        if(role == "engineer") {
+            getEngineer();
+        }
+        if(role == "intern") {
+            getIntern();
+        }
+        if(role == "done") {
+            renderTeam();
+        }
+    })
 
             }
         ])

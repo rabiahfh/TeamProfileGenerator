@@ -41,6 +41,64 @@ function app() {
                 })
 
         }
+        function getEngineer() {
+            inquirer.prompt([
+                {
+                    type: "input",
+                    name: "engineerName",
+                    message: "What is your engineers name"
+                },
+                {
+                    type: "input",
+                    name: "engineerId",
+                    message: "What is your Id?"
+                },
+                {
+                    type: "input",
+                    name: "engineerEmail",
+                    message: "What is your Email?"
+                },
+                {
+                    type: "input",
+                    name: "github",
+                    message: "What is your Github username please?"
+            }
+        ]).then(response => {
+                        const engineer = new Engineer(response.engineerName, response.engineerId, response.engineerEmail, response.officeNumber);
+                        teamMember.push(engineer);
+                        addingNewMember();
+                    })
+    
+            }
+            function getIntern() {
+                inquirer.prompt([
+                    {
+                        type: "input",
+                        name: "internName",
+                        message: "What is your interns name"
+                    },
+                    {
+                        type: "input",
+                        name: "internId",
+                        message: "What is your Id?"
+                    },
+                    {
+                        type: "input",
+                        name: "internEmail",
+                        message: "What is your Email?"
+                    },
+                    {
+                        type: "input",
+                        name: "school",
+                        message: "What is your school please?"
+                }
+            ]).then(response => {
+                            const intern = new Intern(response.internName, response.internId, response.internEmail, response.officeNumber);
+                            teamMember.push(intern);
+                            addingNewMember();
+                        })
+        
+                }
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 

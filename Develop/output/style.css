@@ -3,3 +3,9 @@
 }
 body { background-color:green; 
 }
+h1 {
+    color:green;
+    font-family:  'Akaya Telivigala', cursive;
+    font-weight: bolder;
+    font-size: 250px;
+}

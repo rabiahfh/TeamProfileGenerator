@@ -16,3 +16,8 @@ h1 {
 .card-header {
     background-color: pink;
 }
+.card-title {
+    color: purple;
+    font-family:  'Akaya Telivigala', cursive;;
+
+}

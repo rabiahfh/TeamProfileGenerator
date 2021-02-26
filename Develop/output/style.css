@@ -9,3 +9,7 @@ h1 {
     font-weight: bolder;
     font-size: 250px;
 }
+
+.justify-content-center {
+    background-color: hotpink;
+}
